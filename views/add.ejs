@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students CRUD</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        background-image:url('/images/an.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 400px;
+      }
+
+       h2 {
+        background-color: black;
+        padding: 10px;
+        color:white;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+      }
+
+      label {
+        margin-bottom: 8px;
+
+      }
+
+      input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #ff8c00;
+        color: #fff;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button:hover {
+        background-color:#d27d00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Add New Student</h2>
+
+      <form action="/add" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" required />
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" required />
+
+        <label for="age">Age:</label>
+        <input type="number" name="age" required min="1" max="100" />
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input
+          type="tel"
+          name="phoneNumber"
+          pattern="[0-9]{10}"
+          placeholder="1234567890"
+          required
+        />
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required />
+
+        <button type="submit">Add Student</button>
+      </form>
+    </div>
+  </body>
+</html>

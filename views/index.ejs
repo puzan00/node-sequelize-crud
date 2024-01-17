@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students CRUD</title>
+  <script src="https://kit.fontawesome.com/4eb51f9164.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('/images/anime.webp');
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      width: 900px;
+      margin: 30px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+      max-width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    th {
+      background-color: black;
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fafafa;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3498db;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #ff8c00;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #d27d00;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .logout-form {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <h1>Students List</h1>
+
+    <% if (students.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let sn = 1; %>
+          <% students.forEach(student => { %>
+            <tr>
+              <td><%= sn++ %></td>
+              <td><%= `${student.firstName.toUpperCase()} ${student.lastName.toUpperCase()}` %></td>
+              <td><%= student.age %></td>
+              <td><%= student.phoneNumber %></td>
+              <td><%= student.email %></td>
+              <td>
+                <a href="/edit/<%= student.id %>" style="margin-right: 5px; color: black">
+                  <i class="fa-solid fa-pen-to-square" style="font-size: 20px"></i>
+                </a>
+                <a href="/delete/<%= student.id %>" style="margin-left: 5px; color: black">
+                  <i class="fa-solid fa-trash" style="font-size: 20px"></i>
+                </a>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No students available.</p>
+    <% } %>
+
+    <div class="button-container">
+      <form action="/add" method="GET">
+        <button type="submit">Add Student</button>
+      </form>
+      <form action="/auth/logout" method="GET" class="logout-form">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
