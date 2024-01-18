@@ -67,11 +67,10 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1>Registration</h1>
-    <form action="/auth/register" method="post">
+    <form id="registrationForm" action="/auth/register" method="post" onsubmit="return validateForm()">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
 
@@ -85,6 +84,28 @@
     <% if (error) { %>
       <p style="color: #ff0000; font-size: 16px; margin:0px;"><%= error %></p>
     <% } %>
+
+    <script>
+      function validateForm() {
+        var usernameInput = document.getElementById('username');
+        var passwordInput = document.getElementById('password');
+
+        // Check for  spaces in the username
+        if (/\s{1,}/.test(usernameInput.value)) {
+          alert('Username should not contain  spaces.');
+          return false;
+        }
+
+        // Check for  spaces in the password
+        if (/\s{1,}/.test(passwordInput.value)) {
+          alert('Password should not contain  spaces.');
+          return false;
+        }
+
+        return true;
+      }
+    </script>
   </div>
 </body>
 </html>
+
